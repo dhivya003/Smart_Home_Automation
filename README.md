@@ -4,6 +4,8 @@
 
 This project is a context-aware smart home automation system that uses rule-based logic to automate appliances and tasks. By considering contextual information such as time, user preferences, and environmental conditions, the system enhances convenience, energy efficiency, and personalization in modern smart homes.
 
+
+
 ✨ Features
 
 Context Awareness: Automates appliances based on time, user location, and environmental conditions.

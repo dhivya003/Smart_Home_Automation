@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Devices</title>
+    <style>
+        /* Reset some basic styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;  /* Light grey background for the page */
+            color: #333;
+        }
+
+        /* Main container for the dashboard */
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.4em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* Stats section */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px; /* Proper spacing between the boxes */
+            padding: 20px;
+            background: #4caf50; /* Fresh green color */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats .stat-item {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            color: #34495e;
+            text-align: center;
+            font-size: 1.1em;
+            width: 18%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .stats .stat-item:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+            background-color: #2ecc71; /* Lighter green */
+            color: white;
+        }
+
+        /* Device list table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+            font-size: 1.1em;
+        }
+
+        table th {
+            background-color: #2980b9; /* Blue color for table headers */
+            color: white;
+        }
+
+        table td {
+            background-color: #ffffff;
+            color: #555;
+        }
+
+        table tr:hover {
+            background-color: #ecf0f1;
+        }
+
+        table td, table th {
+            border-radius: 8px;
+        }
+
+        /* Add some responsiveness for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats .stat-item {
+                width: 80%;
+                margin-bottom: 15px;
+            }
+
+            table th, table td {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Device Management Dashboard</h1>
+
+        <div class="stats">
+            <div class="stat-item">
+                <p>Total Devices: {{ total_devices }}</p>
+            </div>
+            <div class="stat-item">
+                <p>Devices Off: {{ off_devices }}</p>
+            </div>
+            <div class="stat-item">
+                <p>Devices On: {{ on_devices }}</p>
+            </div>
+            <div class="stat-item">
+                <p>Inactive Devices: {{ inactive_devices }}</p>
+            </div>
+            <div class="stat-item">
+                <p>Devices with Unknown Status: {{ unknown_status_devices }}</p>
+            </div>
+        </div>
+
+        <h2>Device List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                    <tr>
+                        <td>{{ device[0] }}</td> <!-- device_name -->
+                        <td>{{ device[1] }}</td> <!-- device_status -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

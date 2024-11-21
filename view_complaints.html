@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Complaints</title>
+</head>
+<style>
+    /* Reset some default styles */
+    body, h1, table {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Body styles */
+    body {
+        background-color: #f4f7f6;
+        padding: 20px;
+    }
+
+    /* Heading styles */
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table th, table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    /* Table header styles */
+    table th {
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+    }
+
+    /* Table row hover effect */
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Empty row styles */
+    table td[colspan="5"] {
+        text-align: center;
+        font-style: italic;
+        color: #888;
+    }
+
+    /* Centering the table in the page */
+    .table-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow-x: auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Adding a container for the table */
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+<body>
+    <h1>Complaints List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Complaint ID</th>
+                <th>User ID</th>
+                <th>Complaint Text</th>
+                <th>Status</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.id }}</td>
+                    <td>{{ complaint.user_id }}</td>
+                    <td>{{ complaint.complaint_text }}</td>
+                    <td>{{ complaint.status }}</td>
+                    <td>{{ complaint.created_at }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No complaints available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

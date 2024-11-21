@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger Device Action</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f0f2f5;  /* Soft background color */
+            font-family: 'Arial', sans-serif;  /* Clean font */
+        }
+
+        .container {
+            background-color: #ffffff;  /* White background for form container */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+            max-width: 600px;  /* Max width of the form */
+            margin-top: 50px;  /* Add some space from the top */
+        }
+
+        h2 {
+            color: #333;  /* Dark color for heading */
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;  /* Space below heading */
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #555;  /* Slightly lighter color for form labels */
+        }
+
+        .form-select, .form-control {
+            border-radius: 8px;  /* Rounded corners for input fields */
+            border: 1px solid #ccc;  /* Light border */
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .btn {
+            width: 48%;  /* Make buttons take half of the container width */
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;  /* Darker shade on hover */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #495057;  /* Darker shade on hover */
+        }
+
+        /* Add spacing between buttons */
+        .btn + .btn {
+            margin-left: 10px;
+        }
+
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+
+        /* Adjust input height */
+        .form-control, .form-select {
+            height: 45px;
+        }
+
+        /* Add responsive design for mobile */
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: 100%;  /* Buttons will take full width on small screens */
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-4">Trigger Device Action</h2>
+        <form method="POST" action="{{ url_for('trigger_device_action') }}">
+            <div class="mb-3">
+                <label for="device_id" class="form-label">Device</label>
+                <select class="form-select" id="device_id" name="device_id" required>
+                    {% for device in devices %}
+                        <option value="{{ device['id'] }}">{{ device['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="action" class="form-label">Action</label>
+                <input type="text" class="form-control" id="action" name="action" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Trigger Action</button>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ml-3">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

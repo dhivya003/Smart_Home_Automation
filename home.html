@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Smart Home Automation</h1>
+
+    {% if session['username'] %}
+        <p>Welcome, {{ session['username'] }}!</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <br>
+        <a href="{{ url_for('delete_user', user_id=session['user_id']) }}">Delete your account</a>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a></p>
+    {% endif %}
+</body>
+</html>
